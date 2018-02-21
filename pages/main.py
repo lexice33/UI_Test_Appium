@@ -1,18 +1,13 @@
-import pytest
-
-from appium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
 
-from locators.intro_locators import Locators
-from locators.main_locators import Locators as MainLocators
-from pages.intro import IntroPage
+from locators.main_locators import MainLocators
+from tools.drivers import Drivers
 
 
-class MainPage:
-    driver = IntroPage.driver
-
+class MainPage(Drivers):
+    driver = Drivers.driver
 
     def getActualRegion(self, driver):
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, MainLocators.ACTUAL_REGION)))

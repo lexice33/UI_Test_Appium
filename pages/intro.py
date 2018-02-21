@@ -1,62 +1,19 @@
-import pytest
 import time
 
-from appium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
 
-from locators.intro_locators import Locators
-from locators.main_locators import Locators as MainLocators
+from locators.intro_locators import IntroLocators
+from locators.main_locators import MainLocators
+from tools.drivers import Drivers
 
 
-class IntroPage:
-    @pytest.fixture(scope="function")
-    def driver(self, request):
-        desired_caps = {
-            'automationName': 'Appium',
-            'appActivity': 'ru.leroymerlin.mobile.presentation.MainActivity',
-            'platformName': 'Android',
-            'platformVersion': '8.0.0',
-            # 'platformVersion': '7.1.1',
-            'deviceName': 'c39bb44d',
-            # 'deviceName': '4df797a95741317b',
-            'appPackage': 'ru.leroymerlin.mobile',
-            # not to clear app data
-            # 'fullReset': 'false',
-            # 'noReset': 'true'
-        }
-        driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-
-        def fin():
-            driver.quit()
-
-        request.addfinalizer(fin)
-        return driver  # provide the fixture value
-
-    @pytest.fixture(scope="function")
-    def c_driver(self, request):
-        desired_caps = {
-            'automationName': 'Appium',
-            'appActivity': 'ru.leroymerlin.mobile.presentation.MainActivity',
-            'platformName': 'Android',
-            'platformVersion': '8.0.0',
-            'deviceName': 'c39bb44d',
-            'appPackage': 'ru.leroymerlin.mobile',
-            'noReset': 'true'
-        }
-        driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-
-        def fin():
-            driver.quit()
-
-        request.addfinalizer(fin)
-        return driver  # provide the fixture value
-
+class IntroPage(Drivers):
 
     def isPicturePresent(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.PAGE_IMAGE)))
-        picture = driver.find_element_by_id(Locators.PAGE_IMAGE)
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.PAGE_IMAGE)))
+        picture = driver.find_element_by_id(IntroLocators.PAGE_IMAGE)
 
         if picture.is_displayed():
             return True
@@ -64,36 +21,36 @@ class IntroPage:
             return False
 
     def getTitleText(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.PAGE_TITLE)))
-        title_text = driver.find_element_by_id(Locators.PAGE_TITLE).text
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.PAGE_TITLE)))
+        title_text = driver.find_element_by_id(IntroLocators.PAGE_TITLE).text
 
         return title_text
 
     def getDescriptionText(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.PAGE_DESCRIPTION)))
-        description_text = driver.find_element_by_id(Locators.PAGE_DESCRIPTION).text
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.PAGE_DESCRIPTION)))
+        description_text = driver.find_element_by_id(IntroLocators.PAGE_DESCRIPTION).text
 
         return description_text
 
     def getDescriptionChangeText(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.PAGE_DESCRIPTION_CHANGE)))
-        description_text = driver.find_element_by_id(Locators.PAGE_DESCRIPTION_CHANGE).text
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.PAGE_DESCRIPTION_CHANGE)))
+        description_text = driver.find_element_by_id(IntroLocators.PAGE_DESCRIPTION_CHANGE).text
 
         return description_text
 
     def clickShowButton(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.SHOW_BUTTON)))
-        show_button = driver.find_element_by_id(Locators.SHOW_BUTTON)
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.SHOW_BUTTON)))
+        show_button = driver.find_element_by_id(IntroLocators.SHOW_BUTTON)
         show_button.click()
 
     def clickSkipButton(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.SKIP_BUTTON)))
-        skip_button = driver.find_element_by_id(Locators.SKIP_BUTTON)
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.SKIP_BUTTON)))
+        skip_button = driver.find_element_by_id(IntroLocators.SKIP_BUTTON)
         skip_button.click()
 
     def clickStartButton(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.START_BUTTON)))
-        start_button = driver.find_element_by_id(Locators.START_BUTTON)
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.START_BUTTON)))
+        start_button = driver.find_element_by_id(IntroLocators.START_BUTTON)
         start_button.click()
 
     def selectRegion(self, driver):
@@ -121,13 +78,13 @@ class IntroPage:
     def enable_geolocation_button(self, driver):
         self.clickStartButton(driver)
 
-        if WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, Locators.ALLOW_PERMISSIONS))):
-            allow_permissions = driver.find_element_by_id(Locators.ALLOW_PERMISSIONS)
+        if WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, IntroLocators.ALLOW_PERMISSIONS))):
+            allow_permissions = driver.find_element_by_id(IntroLocators.ALLOW_PERMISSIONS)
 
             if allow_permissions.is_displayed():
                 allow_permissions.click()
 
-                confirm_allow_permissions = driver.find_elements_by_id(Locators.CONFIRM_ALLOW_PERMISSIONS)
+                confirm_allow_permissions = driver.find_elements_by_id(IntroLocators.CONFIRM_ALLOW_PERMISSIONS)
 
                 if len(confirm_allow_permissions) != 0:
                     confirm_allow_permissions[0].click()

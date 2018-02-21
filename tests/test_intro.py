@@ -1,17 +1,17 @@
 import os
 
-from appium import webdriver
 from pages.intro import IntroPage
 from pages.main import MainPage
+from tools.drivers import Drivers
 
 PATH = lambda p: os.path.abspath(
     os.path.join(os.path.dirname(__file__), p)
 )
 
 
-class TestWebViewAndroid(IntroPage, MainPage):
-    driver = IntroPage.driver
-    c_driver = IntroPage.c_driver
+class TestWebViewAndroid(IntroPage, MainPage, Drivers):
+    driver = Drivers.driver
+    c_driver = Drivers.c_driver
 
     def test_skip_introduction(self, driver):
         # first page of introduction
@@ -87,7 +87,6 @@ class TestWebViewAndroid(IntroPage, MainPage):
         IntroPage.enable_geolocation_button(self, driver)
 
         assert IntroPage.getActualRegion(self, driver) == 'Курск'
-
 
     # TODO - need to add test for check case when gwolocation is enabled (https://jira.leroymerlin.ru/browse/MA-1010)
     # def test_enable_geolocation_two(self, driver_wo_gps):

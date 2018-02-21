@@ -1,6 +1,6 @@
-class Locators:
+class IntroLocators:
     # Introduction section
-    PAGE_IMAGE = 'ru.leroymerlin.mobile:id/image'
+    PAGE_IMAGE = 'ru.leroymerlin.mobile:id/lottie_animation_view'
     SHOW_BUTTON = 'ru.leroymerlin.mobile:id/button_show'
     SKIP_BUTTON = 'ru.leroymerlin.mobile:id/button_skip'
     PAGE_TITLE = 'ru.leroymerlin.mobile:id/title'
