@@ -48,5 +48,7 @@ class MainPage(Drivers):
         my_region = driver.find_element_by_id(MainLocators.MYREGION)
         my_region.click()
 
+    def clickBackButtonRegion(self, driver):
+
 
 
