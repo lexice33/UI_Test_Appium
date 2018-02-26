@@ -56,6 +56,9 @@ class IntroPage(Drivers):
     def selectRegion(self, driver):
         driver.swipe(540, 960, 10, 500, 1500)
 
+    # def clickBackRegion(self, driver):
+    #     driver.click
+
     def getActualRegion(self, driver):
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, MainLocators.ACTUAL_REGION)))
         actual_region = driver.find_element_by_id(MainLocators.ACTUAL_REGION)
