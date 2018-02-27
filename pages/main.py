@@ -38,17 +38,16 @@ class MainPage(Drivers):
 
         return region_name_title_text
 
+        """Поиск по xpaht"""
     def clickBackButton(self, driver):
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, MainLocators.BACK_BUTTON)))
-        back_button = driver.find_element_by_id(MainLocators.BACK_BUTTON)
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, MainLocators.BACK_BUTTON)))
+        back_button = driver.find_element_by_xpath(MainLocators.BACK_BUTTON)
         back_button.click()
 
     def getMyRegion(self, driver):
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, MainLocators.MYREGION)))
         my_region = driver.find_element_by_id(MainLocators.MYREGION)
         my_region.click()
-
-    def clickBackButtonRegion(self, driver):
 
 
 
