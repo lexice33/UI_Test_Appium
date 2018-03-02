@@ -50,6 +50,13 @@ class MainPage(Drivers):
 
         return my_region
 
+    def clickOpenBP(self, driver):
+        # WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.INSTANCE, MainLocators.BP_BUTTON)))
+        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.INSTANCE, MainLocators.BP_BUTTON)))
+        bp_button = driver.find_element_by_instance(MainLocators.BP_BUTTON)
+        bp_button.click()
+
+
 
 
 

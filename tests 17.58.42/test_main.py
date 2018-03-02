@@ -20,14 +20,22 @@ class TestWebViewAndroid(IntroPage, MainPage, Drivers):
     #     print('Test OK')
 
 
-    def test_cities_page_opened(self, xiaomi_c_driver):
-        MainPage.clickListRegion(self, xiaomi_c_driver)
-        assert MainPage.getRegionName(self, xiaomi_c_driver) == 'Москва и область'
-        print('Москва ОК')
-
-        MainPage.clickBackButton(self, xiaomi_c_driver)
-        assert MainPage.getMyRegion(self, xiaomi_c_driver) == 'Мой регион:'
+    # def test_cities_page_opened(self, xiaomi_c_driver):
+    #     MainPage.clickListRegion(self, xiaomi_c_driver)
+    #     assert MainPage.getRegionName(self, xiaomi_c_driver) == 'Москва и область'
+    #     print('Москва ОК')
+    #
+    #     MainPage.clickBackButton(self, xiaomi_c_driver)
+    #     assert MainPage.getMyRegion(self, xiaomi_c_driver) == 'Мой регион:'
+    #     print('Test OK')
 
         # assert MainPage.getRegionName(self, xiaomi_c_driver) == 'Самара'
         # print('Самара ок OK')
+
+    def test_best_price_opened(self, xiaomi_c_driver):
+        MainPage.clickOpenBP(self, xiaomi_c_driver)
+
+
+
+
 
