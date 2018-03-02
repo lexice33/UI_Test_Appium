@@ -26,6 +26,12 @@ class TestWebViewAndroid(IntroPage, MainPage, Drivers):
         print('Москва ОК')
 
         MainPage.clickBackButton(self, xiaomi_c_driver)
+        assert MainPage.getMyRegion(self, xiaomi_c_driver) == 'Мой регион:'
+
+
+
+
+
         # assert MainPage.getMyRegion(self, xiaomi_c_driver) == 'Мой регион:'
 
         # assert MainPage.getRegionName(self, xiaomi_c_driver) == 'Самара'

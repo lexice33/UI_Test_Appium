@@ -46,8 +46,9 @@ class MainPage(Drivers):
 
     def getMyRegion(self, driver):
         WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, MainLocators.MYREGION)))
-        my_region = driver.find_element_by_id(MainLocators.MYREGION)
-        my_region.click()
+        my_region = driver.find_element_by_id(MainLocators.MYREGION).text
+
+        return my_region
 
 
 
