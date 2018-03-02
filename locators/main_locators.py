@@ -6,3 +6,4 @@ class MainLocators:
     BACK_BUTTON = '//android.widget.ImageButton[@index="0"]'
     REGION_NAME = 'ru.leroymerlin.mobile:id/tv_name'
     MYREGION = 'ru.leroymerlin.mobile:id/tv_near_me'
+    Test = test
